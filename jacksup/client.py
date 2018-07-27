@@ -1,6 +1,7 @@
 """Player Class"""
 
 import socket
+from .common import send_msg, recv_msg
 
 class Player:
     """Player Class"""
@@ -8,7 +9,27 @@ class Player:
         self.port = port
         self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.socket.connect((server, port))
-        self.position = self.receive()
+        self.position = recv_msg(self.socket)
 
-    def receive(self):
-        return self.socket.recv(4096).decode('utf8')
+    def Check(self):
+        """send action to server"""
+        send_msg(self.socket, 'Check')
+
+    def Fold(self):
+        """send action to server"""
+        send_msg(self.socket, 'Fold')
+
+    def Call(self):
+        """send action to server"""
+        send_msg(self.socket, 'Call')
+
+    def Raise(self, amount):
+        """send action to server"""
+        send_msg(self.socket, 'Raise ' + str(amount))
+
+    def Bet(self, amount):
+        """send action to server"""
+        send_msg(self.socket, 'Bet ' + str(amount))
+
+    def get_button(self):
+        return recv_msg(self.socket)
