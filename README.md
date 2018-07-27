@@ -1,6 +1,6 @@
 # JacksUp
 
-A Poker API written in Python using [Jacks](https://github.com/Cheran-Senthil/Jacks)
+A Poker client and server written in Python using [Jacks](https://github.com/Cheran-Senthil/Jacks)
 
 ## License
 
